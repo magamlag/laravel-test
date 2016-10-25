@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4ac150e5-4558-4bfd-a07d-5fce7fe6dbc6" name="Default" comment="Create Routes and Controller.">
+    <list default="true" id="4ac150e5-4558-4bfd-a07d-5fce7fe6dbc6" name="Default" comment="">
       <change type="DELETED" beforePath="C:\xampp\htdocs\laravel-test\.idea\.name" afterPath="" />
       <change type="DELETED" beforePath="C:\xampp\htdocs\laravel-test\.idea\encodings.xml" afterPath="" />
       <change type="DELETED" beforePath="C:\xampp\htdocs\laravel-test\.idea\laravel-test.iml" afterPath="" />
@@ -121,6 +121,9 @@
       <command text="git rm .idea --cached" />
       <command text="git rm .idea -r --cached" />
       <command text="git status" />
+      <command text="git remote add origin https://github.com/magamlag/laravel-test.git" />
+      <command text="git push -u origin master" />
+      <command text="git rm  --cached .idea/*" />
     </commandsHistory>
   </component>
   <component name="Git.Settings">
@@ -250,7 +253,13 @@
       <option name="project" value="LOCAL" />
       <updated>1477432646042</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Ignore .idea">
+      <created>1477432875105</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1477432875105</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -287,7 +296,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Create Routes and Controller." />
-    <option name="LAST_COMMIT_MESSAGE" value="Create Routes and Controller." />
+    <MESSAGE value="Ignore .idea" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ignore .idea" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
