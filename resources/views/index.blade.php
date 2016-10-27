@@ -82,7 +82,10 @@
             dataType: 'json',
 
             success: function(data){
-                console.log(data);
+              var result_table = $.map(data, function(v){
+                    return '<tr><td>' + v + '</td><td>';
+              });
+              $("table tbody").append(result_table);
             },
 
             error: function(data){
