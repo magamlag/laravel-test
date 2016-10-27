@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.42/css/bootstrap-datetimepicker.min.css" />
     <!-- END -- CSS -->
-    <meta name="csrf_token" content="{{ csrf_token() }}">
+    <meta name="_token" content="{{ csrf_token() }}">
 
 </head>
     <body>
@@ -21,9 +21,9 @@
             <div class="content">
 							<div class="row">
 								<div class="col-md-6">
-                <form class="form-horizontal" role="form" method="post" action="index.php">
+                <form class="form-horizontal form" role="form">
                 	<div class="form-group">
-                		<label for="product-name" class="col-sm-2 control-label"> Product name</label>
+                		<label for="product-name" class="col-sm-2 control-label">Product name</label>
                 		<div class="col-sm-10">
                 			<input type="text" class="form-control" id="product-name" name="product-name" value="">
                 		</div>
@@ -42,61 +42,56 @@
                 	</div>
                 	<div class="form-group">
                 		<div class="col-sm-10 col-sm-offset-2">
-                			<input id="submit" name="submit" type="submit" value="Send" class="btn btn-primary send">
-                		</div>
-                	</div>
-                	<div class="form-group">
-                		<div class="col-sm-10 col-sm-offset-2">
-                			<! Will be used to display an alert to the user>
+                			<button id="submit" class="btn btn-primary send">Send</button>
                 		</div>
                 	</div>
                 </form>
             </div>
-								<div class="col-md-6">
-										 	<h2>List of Products</h2>
-                      <table class="table table-striped">
-                        <thead>
-                          <tr>
-                            <th>Product Name</th>
-                            <th>Quantity in Stock</th>
-                            <th>Price</th>
-                            <th>Created At</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                      </table>
-								</div>
+              <div class="col-md-6">
+                <h2>List of Products</h2>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Product Name</th>
+                      <th>Quantity in Stock</th>
+                      <th>Price</th>
+                      <th>Created At</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
 					</div>
 				</div>
        </div>
-<script>
-$(function(){
+  <script type="application/javascript">
+  $(function(){
 
-$('#submit').on('submit',function(e){
-    $.ajaxSetup({
-        header:$('meta[name="_token"]').attr('content')
-    });
-        e.preventDefault(e);
+  $('#submit').on('click',function(e){
 
-        $.ajax({
+      $.ajaxSetup({
+           headers: {'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')}
+      });
 
-        type: 'POST',
-        url: '/save',
-        data: $(this).serialize(),
-        dataType: 'json',
+          e.preventDefault(e);
+          $.ajax({
+            type: 'POST',
+            url: '/save',
+            data: $('.form').serialize(),
+            dataType: 'json',
 
-        success: function(data){
-            console.log(data);
-        },
+            success: function(data){
+                console.log(data);
+            },
 
-        error: function(data){
-						console.log(data);
-        }
-    })
-    });
-});
-</script>
-    </body>
+            error: function(data){
+                console.log(data);
+            }
+        })
+      });
+  });
+
+  </script>
+</body>
 </html>
