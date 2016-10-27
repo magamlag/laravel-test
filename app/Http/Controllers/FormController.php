@@ -27,7 +27,7 @@ class FormController extends Controller
     public function saveForm(Request $request){
 
         if(!Storage::exists('product_json')){
-            return Response::json(['error'=> 'Fail to wrote data. File doesn\'t exist']);
+            return response()->json(['error'=> 'Fail to wrote data. File doesn\'t exist']);
         }
 
         $data = $request->all();
