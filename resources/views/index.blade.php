@@ -18,7 +18,6 @@
 </head>
     <body>
         <div class="container">
-            <div class="content">
 							<div class="row">
 								<div class="col-md-6">
                 <form class="form-horizontal form" role="form">
@@ -63,7 +62,6 @@
                 </table>
               </div>
 					</div>
-				</div>
        </div>
   <script type="application/javascript">
   $(function(){
