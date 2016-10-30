@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\File;
 use Illuminate\Filesystem\Filesystem;
+use Mockery\CountValidator\Exception;
 
 class FormController extends Controller
 {
@@ -34,12 +35,22 @@ class FormController extends Controller
             if ( !File::exists( $path ) ) {
                 return response()->json( [ 'error' => 'Fail to wrote data. File doesn\'t exist' ] );
             }
-            $data_array = array_merge( $request->all(), [ 'date_time' => Carbon::now()->toDateTimeString() ] );
-            $data_json  = json_encode( $data_array );
+            $data_array      = array_merge( $request->all(), [ 'date_time' => Carbon::now()->toDateTimeString() ] );
+            $data_json       = json_encode( $data_array );
+            $data_json_array = '[' . $data_json . ']';
+            $first_brackets  = '[';
+            $search          = ']';
+            $replace         = ',' . $data_json . $search;
+            $content         = file_get_contents( $path );
 
-            Storage::append( 'product.json', $data_json );
+            if ( strpos( $content, $first_brackets ) === false ) {
+                file_put_contents( $path, $data_json_array );
+            } else {
+                file_put_contents( $path, str_replace( $search, $replace, $content ) );
+            }
 
-            return response()->json( $data_json );
+            return response()->json( $data_json_array );
+
         } catch ( Exception $e ) {
             return $e->getMessage();
         }
