@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\File;
-use Illuminate\Filesystem\Filesystem;
 use Mockery\CountValidator\Exception;
 
 class FormController extends Controller
@@ -19,7 +18,13 @@ class FormController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function showForm( ){
-        return view('index');
+        try {
+            $form_data_json = file_get_contents(public_path('product.json'));
+            return view( 'index', $form_data_json );
+
+        } catch (Exception $e){
+            return $e->getMessage();
+        }
     }
 
     /**
