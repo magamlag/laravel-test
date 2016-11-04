@@ -80,7 +80,8 @@
             dataType: 'json',
 
             success: function(data){
-              var result_table = $.map(data, function(v){
+            var response = JSON.parse(data);
+              var result_table = $.map(JSON.parse(data), function(v,i){
                     return '<tr><td>' + v + '</td><td>';
               });
               $("table tbody").append(result_table);
